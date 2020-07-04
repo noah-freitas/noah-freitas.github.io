@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Readings: Edit Reading</title>
+        <script type="module">
+            import './components/r33d-object-editor/r33d-object-editor.js';
+            import './components/r33d-object-editor-column/r33d-object-editor-column.js';
+            import './components/r33d-page/r33d-page.js';
+        </script>
+    </head>
+    <body>
+        <r33d-page>
+            <r33d-object-editor data-mode="edit" data-object-store-name="readings" data-cancel-url="readings.html">
+                <r33d-object-editor-column
+                    data-prop="scheduledDate"
+                    data-type="date"
+                    data-label="Scheduled Date"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="bookId"
+                    data-type="object-picker"
+                    data-label="Book"
+                    data-object-store-name="books"
+                    data-label-prop="name"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="startPage"
+                    data-type="text"
+                    data-label="Start Page"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="endPage"
+                    data-type="text"
+                    data-label="End Page"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="totalPages"
+                    data-type="number"
+                    data-label="Total Pages"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="completedDate"
+                    data-type="date"
+                    data-label="Completed Date"></r33d-object-editor-column>
+            </r33d-object-editor>
+        </r33d-page>
+    </body>
+</html>

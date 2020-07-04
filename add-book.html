@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Readings: Add Book</title>
+        <script type="module">
+            import './components/r33d-object-editor/r33d-object-editor.js';
+            import './components/r33d-object-editor-column/r33d-object-editor-column.js';
+            import './components/r33d-page/r33d-page.js';
+        </script>
+    </head>
+    <body>
+        <r33d-page>
+            <r33d-object-editor data-mode="create" data-object-store-name="books" data-cancel-url="books.html">
+                <r33d-object-editor-column data-prop="name" data-type="text" data-label='Name'></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="completedDate"
+                    data-type="date"
+                    data-label="Completed Date"
+                ></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="authorId"
+                    data-type="object-picker"
+                    data-label="Author"
+                    data-object-store-name="authors"
+                    data-label-prop="name"
+                ></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="publisherId"
+                    data-type="object-picker"
+                    data-label="Publisher"
+                    data-object-store-name="publishers"
+                    data-label-prop="name"
+                ></r33d-object-editor-column>
+                <r33d-object-editor-column data-prop="publishedYear" data-type="number" data-label="Published"></r33d-object-editor-column>
+                <r33d-object-editor-column data-prop="pageCount" data-type="number" data-label="Pages"></r33d-object-editor-column>
+                <r33d-object-editor-column data-prop="wordsPerPage" data-type="number" data-label="Words Per Page"></r33d-object-editor-column>
+                <r33d-object-editor-column data-prop="isbn" data-type="text" data-label="ISBN"></r33d-object-editor-column>
+                <r33d-object-editor-column data-prop="subjects" data-type="texts" data-label="Subjects"></r33d-object-editor-column>
+            </r33d-object-editor>
+        </r33d-page>
+    </body>
+</html>

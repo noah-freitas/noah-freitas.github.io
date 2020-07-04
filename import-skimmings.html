@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Readings: Import Skimmings</title>
+        <script type="module">
+            import './components/r33d-object-importer/r33d-object-importer.js';
+            import './components/r33d-object-importer-column/r33d-object-importer-column.js';
+            import './components/r33d-page/r33d-page.js';
+        </script>
+        <style>
+            r33d-object-importer {
+                height : 80vh;
+                width  : 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <r33d-page>
+            <r33d-object-importer data-object-store-name="skimmings">
+                <r33d-object-importer-column
+                    data-prop="id"
+                    data-type="id"
+                    data-label="ID"></r33d-object-importer-column>
+                <r33d-object-importer-column
+                    data-prop="completedDate"
+                    data-type="date"
+                    data-label="Completed Date"></r33d-object-importer-column>
+                <r33d-object-importer-column
+                    data-prop="totalMinutes"
+                    data-type="number"
+                    data-label="Total Minutes"></r33d-object-importer-column>
+                <r33d-object-importer-column
+                    data-prop="startBookId"
+                    data-type="id"
+                    data-label="Start Book  ID"></r33d-object-importer-column>
+                <r33d-object-importer-column
+                    data-prop="startPage"
+                    data-type="text"
+                    data-label="Start Page"></r33d-object-importer-column>
+                <r33d-object-importer-column
+                    data-prop="endBookId"
+                    data-type="id"
+                    data-label="End Book  ID"></r33d-object-importer-column>
+                <r33d-object-importer-column
+                    data-prop="endPage"
+                    data-type="text"
+                    data-label="End Page"></r33d-object-importer-column>
+            </r33d-object-importer>
+        </r33d-page>
+    </body>
+</html>

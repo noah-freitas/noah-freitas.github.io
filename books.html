@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Readings: Books</title>
+        <script type="module">
+            import './components/r33d-object-list/r33d-object-list.js';
+            import './components/r33d-object-list-column/r33d-object-list-column.js';
+            import './components/r33d-page/r33d-page.js';
+        </script>
+    </head>
+    <body>
+        <r33d-page>
+            <r33d-object-list
+                data-object-store-name="books"
+                data-add-new-link="/add-book.html"
+                data-import-link="/import-books.html"
+                data-object-name="book"
+                data-header-title="Books"
+                data-order-by="completedDate"
+            >
+                <r33d-object-list-column
+                    data-prop="id"
+                    data-type="link"
+                    data-route="/book.html#$$"
+                    data-label="Name"
+                    data-link-label="name"
+                ></r33d-object-list-column>
+                <r33d-object-list-column data-prop="completedDate" data-type="date" data-label="Completed Date"></r33d-object-list-column>
+                <r33d-object-list-column
+                    data-prop="authorId"
+                    data-type="related-object-prop"
+                    data-label="Author"
+                    data-object-prop-path="name"
+                    data-object-store-name="authors"
+                ></r33d-object-list-column>
+                <r33d-object-list-column
+                    data-prop="publisherId"
+                    data-type="related-object-prop"
+                    data-label="Publisher"
+                    data-object-prop-path="name"
+                    data-object-store-name="publishers"
+                ></r33d-object-list-column>
+                <r33d-object-list-column data-prop="publishedYear" data-type="number" data-label="Published"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="pageCount" data-type="number" data-label="Page Count"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="wordsPerPage" data-type="number" data-label="Words/Page"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="isbn" data-type="text" data-label="ISBN"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="subjects" data-type="texts" data-label="Subjects"></r33d-object-list-column>
+            </r33d-object-list>
+        </r33d-page>
+    </body>
+</html>

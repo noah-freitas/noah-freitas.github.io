@@ -1,0 +1,55 @@
+<template>
+    <div id="container">
+        <h1>Import <span id="object-name"></span></h1>
+        <p>Paste tab sepparated value text below.  The data should have the following columns:</p>
+        <ul id="columns"></ul>
+        <textarea placeholder="Paste TSV here"></textarea>
+        <div id="button-container">
+            <button id="reset">Reset</button>
+            <button id="cancel">Cancel</button>
+            <button id="import">Import</button>
+        </div>
+    </div>
+    <r33d-database></r33d-database>
+    <style>
+        :host {
+            display : block;
+        }
+
+        #container {
+            flex-direction : column;
+            height         : 100%;
+            display        : flex;
+            width          : 100%;
+        }
+
+        #object-name {
+            text-transform : capitalize;
+        }
+
+        #columns {
+            display         : flex;
+            list-style-type : none;
+        }
+
+        #columns li:not(:last-of-type) {
+            margin-right : 10px;
+        }
+
+        textarea {
+            box-sizing : border-box;
+            height     : 100%;
+            width      : 100%;
+        }
+
+        #button-container {
+            display         : flex;
+            justify-content : flex-end;
+            margin-top      : 10px;;
+        }
+
+        #button-container button:not(:last-of-type) {
+            margin-right : 10px;
+        }
+    </style>
+</template>

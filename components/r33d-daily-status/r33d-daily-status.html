@@ -1,0 +1,69 @@
+<template>
+    <dl>
+        <div>
+            <dt>Today</dt>
+            <dd id="today" data-state="">
+                <span data-state="done">&#10004;</span>
+                <span data-state="waiting">?</span>
+            </dd>
+        </div>
+        <div>
+            <dt>Yesterday</dt>
+            <dd id="yesterday" data-state="">
+                <span data-state="done">&#10004;</span>
+                <span data-state="missed">x</span>
+            </dd>
+        </div>
+        <div>
+            <dt id="current-book-name">Current Book</dt>
+            <dd>
+                <progress max="100" value="0"></progress>
+                <span id="current-book-completion-percent"></span>
+            </dd>
+        </div>
+        <div>
+            <dt>Streak</dt>
+            <dd><span id="streak-number"></span> days (Since <span id="streak-since"></span>)</dd>
+        </div>
+        <div>
+            <dt>Next Book</dt>
+            <dd><span id="next-book-name"></span> (Starting <span id="next-book-starting"></span>)</dd>
+        </div>
+        <div>
+            <dt>Last Year (<span id="last-year"></span>)</dt>
+            <dd id="last-year-name"></dd>
+        </div>
+        <div id="next-year-container">
+            <dt>Next Year (<span id="next-year"></span>)</dt>
+            <dd id="next-year-name"></dd>
+        </div>
+    </dl>
+    <style>
+        :host {
+            display : block;
+        }
+
+        [data-state] [data-state] {
+            display : none;
+        }
+
+        [data-state="done"] [data-state="done"],
+        [data-state="missed"] [data-state="missed"],
+        [data-state="waiting"] [data-state="waiting"] {
+            display : inline;
+        }
+
+        dl div {
+            align-items     : center;
+            display         : flex;
+            justify-content : flex-start;
+            margin-bottom   : 15px;
+        }
+
+        dl div dd {
+            margin      : 0;
+            margin-left : auto;
+        }
+    </style>
+    <r33d-database></r33d-database>
+</template>

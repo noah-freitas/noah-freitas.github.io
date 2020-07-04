@@ -1,0 +1,44 @@
+<template>
+    <form>
+        <fieldset></fieldset>
+        <div id="buttons">
+            <button id="delete">Delete</button>
+            <button id="cancel">Cancel</button>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <r33d-database></r33d-database>
+    <style>
+        :host {
+            display   : block;
+            margin    : 0 auto;
+            max-width : 65vw;
+        }
+
+        form fieldset {
+            border         : 0;
+            display        : flex;
+            flex-direction : column;
+            margin         : 0;
+            outline        : 0;
+            padding        : 0;
+        }
+
+        #buttons {
+            display         : flex;
+            justify-content : flex-end;
+        }
+
+        #delete {
+            color : red;
+        }
+
+        #cancel {
+            color : orange;
+        }
+
+        #buttons button:not(:last-child) {
+            margin-right : 10px;
+        }
+    </style>
+</template>

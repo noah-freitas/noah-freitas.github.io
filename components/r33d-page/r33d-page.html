@@ -1,0 +1,21 @@
+<template>
+    <menu>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/authors.html">Authors</a></li>
+            <li><a href="/books.html">Books</a></li>
+            <li><a href="/publishers.html">Publishers</a></li>
+            <li><a href="/readings.html">Readings</a></li>
+            <li><a href="/skimmings.html">Skimmings</a></li>
+        </ul>
+    </menu>
+    <slot></slot>
+    <r33d-service-worker></r33d-service-worker>
+    <style>
+        menu ul {
+            display         : flex;
+            justify-content : space-around;
+            list-style-type : none;
+        }
+    </style>
+</template>

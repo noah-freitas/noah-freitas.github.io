@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Readings: Add Publisher</title>
+        <script type="module">
+            import './components/r33d-object-editor/r33d-object-editor.js';
+            import './components/r33d-object-editor-column/r33d-object-editor-column.js';
+            import './components/r33d-page/r33d-page.js';
+        </script>
+    </head>
+    <body>
+        <r33d-page>
+            <r33d-object-editor data-mode="create" data-object-store-name="publishers" data-cancel-url="publishers.html">
+                <r33d-object-editor-column data-prop="name" data-type="text" data-label="Name"></r33d-object-editor-column>
+            </r33d-object-editor>
+        </r33d-page>
+    </body>
+</html>

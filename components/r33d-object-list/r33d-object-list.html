@@ -1,0 +1,39 @@
+<template>
+    <div id="element-header">
+        <a href="" id="add-new-link">Add New Object</a>
+        <a href="" id="import-link">Import Objects</a>
+        <h1 id="title">Title</h1>
+    </div>
+    <div id="header"></div>
+    <div id="object-list"></div>
+    <r33d-database></r33d-database>
+    <style>
+        #add-new-link,
+        #title {
+            text-transform : capitalize;
+        }
+
+        #object-list {
+            display        : flex;
+            flex-direction : column;
+        }
+
+        #header {
+            font-weight    : bold;
+            text-transform : capitalize;
+        }
+
+        #object-list div, #header {
+            display : flex;
+            width   : 100%;
+        }
+
+        #object-list div {
+            margin : 5px 0;
+        }
+
+        #object-list div > *, #header > * {
+            flex : 1 1 100%;
+        }
+    </style>
+</template>

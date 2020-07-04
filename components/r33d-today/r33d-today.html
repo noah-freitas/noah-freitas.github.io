@@ -1,0 +1,35 @@
+<template>
+    <div id="container" data-active="not-done">
+        <p id="done">Good job! You finished today's reading.</p>
+        <p id="todays-reading">
+            <span id="book-name"></span> pages <span id="start-page"></span> - <span id="end-page"></span>
+        </p>
+        <p id="not-done">
+            <button id="complete">I did it!</button>
+        </p>
+        <p id="no-reading">You don't have a reading scheduled today.</p>
+    </div>
+    <r33d-database></r33d-database>
+    <style>
+        #container > * {
+            display : none;
+        }
+
+        [data-active="done"] #done,
+        [data-active="not-done"] #not-done,
+        [data-active="done"] #todays-reading,
+        [data-active="not-done"] #todays-reading,
+        [data-active="no-reading"] #no-reading {
+            display : block;
+        }
+
+        /* not-done needs flexbox layout */
+        [data-active="not-done"] #not-done {
+            display : flex;
+        }
+
+        #complete {
+            width : 100%;
+        }
+    </style>
+</template>

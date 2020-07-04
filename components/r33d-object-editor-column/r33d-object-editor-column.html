@@ -1,0 +1,26 @@
+<template>
+    <label>
+        <span class="label-text"></span>
+    </label>
+    <r33d-database></r33d-database>
+    <style>
+        label {
+            display        : flex;
+            flex-direction : row;
+            margin         : 5px 0;
+            width          : 100%;
+        }
+
+        .label-text {
+            flex : 0 0 120px;
+        }
+
+        label :not(.label-text) {
+            flex : 1 1 100%;
+        }
+
+        textarea {
+            min-height : 150px;
+        }
+    </style>
+</template>

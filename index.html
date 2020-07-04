@@ -2,16 +2,26 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Tetris</title>
-        <link rel="stylesheet" href="css/main.css">
+        <title>Readings</title>
+        <link rel="manifest" href="/manifest.json">
+        <style>
+            r33d-page {
+                display        : flex;
+                flex-direction : column;
+                margin         : 0 auto;
+                max-width      : 60vw;
+            }
+        </style>
+        <script type="module">
+            import './components/r33d-daily-status/r33d-daily-status.js';
+            import './components/r33d-page/r33d-page.js';
+            import './components/r33d-today/r33d-today.js';
+        </script>
     </head>
     <body>
-        <article id="tetris-board">
-            <div class="block" data-current="true" data-animating="true" style="top: -50px; left: 200px"></div>
-        </article>
-        <div id="score-panel">Score: <span id="score">0</span></div>
-        <script src="js/q.min.js"></script>
-        <script src="js/fg.js"></script>
-        <script src="js/main.js"></script>
+        <r33d-page>
+            <r33d-today></r33d-today>
+            <r33d-daily-status></r33d-daily-status>
+        </r33d-page>
     </body>
 </html>

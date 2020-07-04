@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Readings: Readings</title>
+        <script type="module">
+            import './components/r33d-object-list/r33d-object-list.js';
+            import './components/r33d-object-list-column/r33d-object-list-column.js';
+            import './components/r33d-page/r33d-page.js';
+        </script>
+    </head>
+    <body>
+        <r33d-page>
+            <r33d-object-list
+                data-object-store-name="readings"
+                data-add-new-link="/add-reading.html"
+                data-import-link="/import-readings.html"
+                data-object-name="reading"
+                data-header-title="Readings"
+                data-order-by="scheduledDate"
+            >
+                <r33d-object-list-column data-prop="id" data-type="link" data-route="/reading.html#$$" data-label="Scheduled Date" data-link-label="scheduledDate"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="completedDate" data-type="date" data-label="Completed Date"></r33d-object-list-column>
+                <r33d-object-list-column
+                    data-prop="bookId"
+                    data-type="related-object-prop"
+                    data-label="Book"
+                    data-object-prop-path="name"
+                    data-object-store-name="books"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="startPage" data-type="text" data-label="Start Page"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="endPage" data-type="text" data-label="End Page"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="totalPages" data-type="number" data-label="Total Pages"></r33d-object-list-column>
+            </r33d-object-list>
+        </r33d-page>
+    </body>
+</html>
