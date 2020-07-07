@@ -2,11 +2,13 @@ import '../r33d-database/r33d-database.js';
 import DateHelpers   from '../../lib/date.js';
 import R33dUiElement from '../r33d-ui-element/r33d-ui-element.js';
 
+const todaysReadingDone = Symbol('todaysReadingDone');
+
 class R33dDailyStatusElement extends R33dUiElement {
     async connectedCallback() {
         if (!await super.connectedCallback()) return;
 
-        let db = this.$('r33d-database');
+        const db = this.$('r33d-database');
         await this.setTodaysCompletedState(db);
         await this.setCurrentBooksProgress(db);
         await this.setYesterdaysCompletedState(db);
@@ -14,6 +16,14 @@ class R33dDailyStatusElement extends R33dUiElement {
         await this.setNextBookState(db);
         await this.setLastYearState(db);
         await this.setNextYearState(db);
+
+        document.addEventListener('r33d-reading:updated', async e => {
+            if (e.detail.scheduledDate === DateHelpers.toDatePicker(new Date()) && e.detail.completedDate && !this[todaysReadingDone]) {
+                await this.setTodaysCompletedState(db);
+                await this.setCurrentBooksProgress(db);
+                await this.setStreakCount(db);
+            }
+        });
     }
 
     async setCurrentBooksProgress(db) {
@@ -31,6 +41,8 @@ class R33dDailyStatusElement extends R33dUiElement {
 
             this.$('#current-book-name').textContent = book.name;
             this.$('#current-book-completion-percent').textContent = `${Math.round(pagesRead / totalPagesForBook * 100)}%`;
+        } else {
+            this.$('#current-book-container').hidden = true;
         }
     }
 
@@ -40,10 +52,14 @@ class R33dDailyStatusElement extends R33dUiElement {
         const lastYearStr = DateHelpers.toDatePicker(lastYear);
 
         const reading = (await db.fromIndex('readings', 'scheduledDate', IDBKeyRange.only(lastYearStr)))[0];
-        const book    = await db.get('books', reading.bookId);
 
-        this.$('#last-year').textContent      = lastYearStr;
-        this.$('#last-year-name').textContent = book.name;
+        if (reading) {
+            const book = await db.get('books', reading.bookId);
+            this.$('#last-year').textContent      = lastYearStr;
+            this.$('#last-year-name').textContent = book.name;
+        } else {
+            this.$('#last-year-container').hidden = true;
+        }
     }
 
     async setNextBookState(db) {
@@ -67,6 +83,8 @@ class R33dDailyStatusElement extends R33dUiElement {
                 return;
             }
         }
+
+        if (!curBookId) this.$('#next-book-container').hidden = true;
     }
 
     async setNextYearState(db) {
@@ -102,19 +120,24 @@ class R33dDailyStatusElement extends R33dUiElement {
         }
 
         this.$('#streak-number').textContent = streakCount;
+        if (!streakCount) this.$('#streak-container').hidden = true;
     }
 
     async setTodaysCompletedState(db) {
-        let todayStr = DateHelpers.toDatePicker(new Date());
-        let todaysCompletedReading = (await db.fromIndex('readings', 'completedDate,scheduledDate', [todayStr, todayStr]))[0];
+        const todayStr               = DateHelpers.toDatePicker(new Date()),
+              todaysCompletedReading = (await db.fromIndex('readings', 'completedDate,scheduledDate', [todayStr, todayStr]))[0];
+
         this.$('#today').dataset.state = todaysCompletedReading ? 'done' : 'waiting';
+        this[todaysReadingDone] = Boolean(todaysCompletedReading);
     }
 
     async setYesterdaysCompletedState(db) {
-        let yesterDay = new Date();
+        const yesterDay = new Date();
         yesterDay.setDate(yesterDay.getDate() - 1);
-        let yesterDayStr = DateHelpers.toDatePicker(yesterDay);
-        let yesterdaysReading = (await db.fromIndex('readings', 'completedDate,scheduledDate', [yesterDayStr, yesterDayStr]))[0];
+
+        const yesterDayStr      = DateHelpers.toDatePicker(yesterDay),
+              yesterdaysReading = (await db.fromIndex('readings', 'completedDate,scheduledDate', [yesterDayStr, yesterDayStr]))[0];
+
         this.$('#yesterday').dataset.state = yesterdaysReading ? 'done' : 'missed';
     }
 }

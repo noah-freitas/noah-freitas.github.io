@@ -1,4 +1,4 @@
-const cacheName = '0.0.22',
+const cacheName = '0.0.39',
       showLog   = false;
 
 const assetUrls = [
@@ -25,6 +25,7 @@ const assetUrls = [
     '/components/r33d-today/r33d-today.js',
     '/components/r33d-ui-element/r33d-ui-element.js',
     '/lib/date.js',
+    '/styles/main.css',
     '/add-author.html',
     '/add-book.html',
     '/add-publisher.html',

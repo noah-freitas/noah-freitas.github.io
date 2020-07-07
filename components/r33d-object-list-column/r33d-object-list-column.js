@@ -29,7 +29,13 @@ class R33ddObjectListColumnElement extends R33dUiElement {
             return a;
         }
 
-        let span         = document.createElement('span');
+        let span = document.createElement('span');
+        if (this.dataset.type === 'texts') {
+            let val = object[this.dataset.prop];
+            span.textContent = Array.isArray(val) ? val.join(', ') : val;
+            return span;
+        }
+
         span.textContent = object[this.dataset.prop];
         return span;
     }

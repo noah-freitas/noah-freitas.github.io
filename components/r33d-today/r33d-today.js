@@ -27,6 +27,7 @@ class R33dTodayElement extends R33dUiElement {
                     todaysReading.completedDate = DateHelpers.toDatePicker(new Date());
                     await db.put('readings', todaysReading);
                     this.$('[data-active]').dataset.active = 'done';
+                    this.dispatchEvent(new CustomEvent('r33d-reading:updated', { detail : todaysReading, bubbles : true, composed : true }));
                 });
             }
         } else {

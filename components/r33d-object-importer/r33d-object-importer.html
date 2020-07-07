@@ -1,14 +1,17 @@
 <template>
     <div id="container">
         <h1>Import <span id="object-name"></span></h1>
-        <p>Paste tab sepparated value text below.  The data should have the following columns:</p>
+        <p>Paste or upload a file containing tab sepparated value text below.  The data should have the following columns:</p>
         <ul id="columns"></ul>
-        <textarea placeholder="Paste TSV here"></textarea>
-        <div id="button-container">
-            <button id="reset">Reset</button>
-            <button id="cancel">Cancel</button>
-            <button id="import">Import</button>
-        </div>
+        <form>
+            <textarea placeholder="Paste TSV here"></textarea>
+            <input type="file" accept=".tsv,.txt,text/tab-separated-values">
+            <div id="button-container">
+                <button id="reset">Reset</button>
+                <button id="cancel">Cancel</button>
+                <button id="import">Import</button>
+            </div>
+        </form>
     </div>
     <r33d-database></r33d-database>
     <style>
@@ -21,6 +24,12 @@
             height         : 100%;
             display        : flex;
             width          : 100%;
+        }
+
+        form {
+            display        : flex;
+            flex           : 1 1 100%;
+            flex-direction : column;
         }
 
         #object-name {
@@ -37,9 +46,10 @@
         }
 
         textarea {
-            box-sizing : border-box;
-            height     : 100%;
-            width      : 100%;
+            box-sizing    : border-box;
+            height        : 100%;
+            margin-bottom : 20px;
+            width         : 100%;
         }
 
         #button-container {

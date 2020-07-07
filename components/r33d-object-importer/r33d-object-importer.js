@@ -10,7 +10,7 @@ class R33ddObjectImporterElement extends R33dUiElement {
         this[columns] = this.$$_('r33d-object-importer-column');
 
         let colsList = this.$('#columns');
-        for (let col of this[columns]) {
+        for (const col of this[columns]) {
             let li = document.createElement('li');
             li.textContent = col.dataset.label;
             colsList.appendChild(li);
@@ -20,17 +20,28 @@ class R33ddObjectImporterElement extends R33dUiElement {
 
         this.$('#import').addEventListener('click', async e => {
             e.preventDefault();
+            e.stopPropagation();
 
-            let vals = this.$('textarea').value.split('\n').map(line => line.split('\t'));
-            let formatedVals = vals.map(line => line.map((v, i) => this[columns][i].format(v)));
-            let keys = this[columns].map(c => c.dataset.prop);
-            let objs = formatedVals.map(v => keys.reduce((obj, k, i) => {
-                obj[k] = v[i];
-                return obj;
-            }, {}));
+            const textAreaVal = this.$('textarea').value,
+                  firstFile   = this.$('input[type="file"]').files[0];
 
-            let db = this.$('r33d-database');
-            for (let obj of objs) {
+            if (!textAreaVal && !firstFile) {
+                this.$('textarea').setCustomValidity('Please paste or upload TSV text.');
+                this.$('form').reportValidity();
+                return;
+            }
+
+            const db           = this.$('r33d-database'),
+                  tsvText      = firstFile ? await firstFile.text() : textAreaVal,
+                  vals         = tsvText.split('\n').map(line => line.split('\t')),
+                  formatedVals = vals.map(line => line.map((v, i) => this[columns][i].format(v))),
+                  keys         = this[columns].map(c => c.dataset.prop),
+                  gatherObject = v => keys.reduce((obj, k, i) => {
+                      obj[k] = v[i];
+                      return obj;
+                  }, {});
+
+            for (const obj of formatedVals.map(gatherObject)) {
                 await db.add(this.dataset.objectStoreName, obj);
             }
         });
