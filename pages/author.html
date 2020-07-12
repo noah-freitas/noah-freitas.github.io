@@ -2,18 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Readings: Edit Publisher</title>
+        <title>Readings: Edit Author</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/styles/main.css">
         <script type="module">
-            import './components/r33d-object-editor/r33d-object-editor.js';
-            import './components/r33d-object-editor-column/r33d-object-editor-column.js';
-            import './components/r33d-page/r33d-page.js';
+            import './../components/r33d-object-editor/r33d-object-editor.js';
+            import './../components/r33d-object-editor-column/r33d-object-editor-column.js';
+            import './../components/r33d-page/r33d-page.js';
         </script>
     </head>
     <body>
         <r33d-page>
-            <r33d-object-editor data-mode="edit" data-object-store-name="publishers" data-cancel-url="publishers.html">
+            <r33d-object-editor data-mode="edit" data-object-store-name="authors" data-cancel-url="authors.html">
                 <r33d-object-editor-column data-prop="name" data-type="text" data-label="Name"></r33d-object-editor-column>
             </r33d-object-editor>
         </r33d-page>

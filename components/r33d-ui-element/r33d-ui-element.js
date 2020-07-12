@@ -25,7 +25,7 @@ class R33dUiElement extends R33dElement {
 
         return new Promise(async (res, rej) => {
             try {
-                let resp   = await fetch(`./components/${name}/${name}.html`),
+                let resp   = await fetch(`/components/${name}/${name}.html`),
                     html   = await resp.text(),
                     parser = new DOMParser(),
                     doc    = parser.parseFromString(html, 'text/html'),

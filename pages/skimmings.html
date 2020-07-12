@@ -6,21 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/styles/main.css">
         <script type="module">
-            import './components/r33d-object-list/r33d-object-list.js';
-            import './components/r33d-object-list-column/r33d-object-list-column.js';
-            import './components/r33d-page/r33d-page.js';
+            import './../components/r33d-object-list/r33d-object-list.js';
+            import './../components/r33d-object-list-column/r33d-object-list-column.js';
+            import './../components/r33d-page/r33d-page.js';
         </script>
     </head>
     <body>
         <r33d-page>
             <r33d-object-list
                 data-object-store-name="skimmings"
-                data-add-new-link="/add-skimming.html"
-                data-import-link="/import-skimmings.html"
+                data-add-new-link="/pages/add-skimming.html"
+                data-import-link="/pages/import-skimmings.html"
                 data-object-name="skimming"
             >
-                <r33d-object-list-column data-prop="id" data-type="link" data-route="/skimming.html#$$" data-label="Completed Date" data-link-label="completedDate"></r33d-object-list-column>
-                <r33d-object-list-column data-prop="totalMinutes" data-type="number" data-label="Minutes"></r33d-object-list-column>
+                <r33d-object-list-column data-prop="id" data-type="link" data-route="/pages/skimming.html#$$" data-label="Completed Date" data-link-label="completedDate"></r33d-object-list-column>
                 <r33d-object-list-column
                     data-prop="startBookId"
                     data-type="related-object-prop"

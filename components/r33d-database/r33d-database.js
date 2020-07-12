@@ -35,7 +35,6 @@ const dbUpgrades = [
 
         let skimmingsStore = db.createObjectStore('skimmings', { keyPath : 'id', autoIncrement : true });
         skimmingsStore.createIndex('completedDate', 'completedDate', { unique : true });
-        skimmingsStore.createIndex('totalMinutes', 'totalMinutes', { unique : false });
         skimmingsStore.createIndex('startBookId', 'startBookId', { unique : false });
         skimmingsStore.createIndex('startPage', 'startPage', { unique : false });
         skimmingsStore.createIndex('endBookId', 'endBookId', { unique : false });

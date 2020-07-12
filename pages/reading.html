@@ -2,26 +2,26 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Reading: Add Skimming</title>
+        <title>Readings: Edit Reading</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/styles/main.css">
         <script type="module">
-            import './components/r33d-object-editor/r33d-object-editor.js';
-            import './components/r33d-object-editor-column/r33d-object-editor-column.js';
-            import './components/r33d-page/r33d-page.js';
+            import './../components/r33d-object-editor/r33d-object-editor.js';
+            import './../components/r33d-object-editor-column/r33d-object-editor-column.js';
+            import './../components/r33d-page/r33d-page.js';
         </script>
     </head>
     <body>
         <r33d-page>
-            <r33d-object-editor data-mode="create" data-object-store-name="skimmings" data-cancel-url="skimmings.html">
+            <r33d-object-editor data-mode="edit" data-object-store-name="readings" data-cancel-url="readings.html">
                 <r33d-object-editor-column
-                    data-prop="completedDate"
+                    data-prop="scheduledDate"
                     data-type="date"
-                    data-label="Completed Date"></r33d-object-editor-column>
+                    data-label="Scheduled Date"></r33d-object-editor-column>
                 <r33d-object-editor-column
-                    data-prop="startBookId"
+                    data-prop="bookId"
                     data-type="object-picker"
-                    data-label="Start Book"
+                    data-label="Book"
                     data-object-store-name="books"
                     data-label-prop="name"></r33d-object-editor-column>
                 <r33d-object-editor-column
@@ -29,15 +29,17 @@
                     data-type="text"
                     data-label="Start Page"></r33d-object-editor-column>
                 <r33d-object-editor-column
-                    data-prop="endBookId"
-                    data-type="object-picker"
-                    data-label="End Book"
-                    data-object-store-name="books"
-                    data-label-prop="name"></r33d-object-editor-column>
-                <r33d-object-editor-column
                     data-prop="endPage"
                     data-type="text"
                     data-label="End Page"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="totalPages"
+                    data-type="number"
+                    data-label="Total Pages"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="completedDate"
+                    data-type="date"
+                    data-label="Completed Date"></r33d-object-editor-column>
             </r33d-object-editor>
         </r33d-page>
     </body>

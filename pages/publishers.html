@@ -2,28 +2,28 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Readings: Authors</title>
+        <title>Readings: Publishers</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/styles/main.css">
         <script type="module">
-            import './components/r33d-object-list/r33d-object-list.js';
-            import './components/r33d-object-list-column/r33d-object-list-column.js';
-            import './components/r33d-page/r33d-page.js';
+            import './../components/r33d-object-list/r33d-object-list.js';
+            import './../components/r33d-object-list-column/r33d-object-list-column.js';
+            import './../components/r33d-page/r33d-page.js';
         </script>
     </head>
     <body>
         <r33d-page>
             <r33d-object-list
-                data-object-store-name="authors"
-                data-add-new-link="/add-author.html"
-                data-import-link="/import-authors.html"
-                data-object-name="author"
+                data-object-store-name="publishers"
+                data-add-new-link="/pages/add-publisher.html"
+                data-import-link="/pages/import-publishers.html"
+                data-object-name="publisher"
                 data-order-by="name"
             >
                 <r33d-object-list-column
                     data-prop="id"
                     data-type="link"
-                    data-route="/author.html#$$"
+                    data-route="/pages/publisher.html#$$"
                     data-label="Name"
                     data-link-label="name"
                 ></r33d-object-list-column>

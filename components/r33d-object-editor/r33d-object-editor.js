@@ -22,17 +22,24 @@ class R33dObjectEditorElement extends R33dUiElement {
             e.preventDefault();
             e.stopPropagation();
 
-            let dbEl = this.$('r33d-database');
+            const dbEl = this.$('r33d-database');
+            let eventCanceled;
 
             if (this.dataset.mode === 'create') {
-                await dbEl.add(this.dataset.objectStoreName, this.value);
+                const obj = this.value;
+                const createProps = this.dataset.createProps ? JSON.parse(this.dataset.createProps) : {};
+                Object.assign(obj, createProps);
+                await dbEl.add(this.dataset.objectStoreName, obj);
+                eventCanceled = this.dispatchEvent(new CustomEvent('r33d-created', { detail : obj, bubbles : true, cancelable : true }));
             } else if (this.dataset.mode === 'edit') {
-                await dbEl.put(this.dataset.objectStoreName, this.value);
+                const obj = this.value;
+                await dbEl.put(this.dataset.objectStoreName, obj);
+                eventCanceled = this.dispatchEvent(new CustomEvent('r33d-edited', { detail : obj, bubbles : true, cancelable : true }));
             } else {
                 throw new Error('data-mode not set');
             }
 
-            history.back();
+            if (!eventCanceled && !this.hasAttribute('data-dont-redirect')) history.back();
         });
 
         this.$('#cancel').addEventListener('click', e => {
@@ -54,7 +61,7 @@ class R33dObjectEditorElement extends R33dUiElement {
     }
 
     get value() {
-        let colValues = this.$$('r33d-object-editor-column').map(col => col.value);
+        const colValues = this.$$('r33d-object-editor-column').map(col => col.value);
         return Object.assign(this[curObject] || {}, ...colValues);
     }
 

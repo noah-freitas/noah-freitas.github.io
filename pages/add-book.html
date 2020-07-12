@@ -2,27 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Readings: Edit Book</title>
+        <title>Readings: Add Book</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/styles/main.css">
         <script type="module">
-            import './components/r33d-object-editor/r33d-object-editor.js';
-            import './components/r33d-object-editor-column/r33d-object-editor-column.js';
-            import './components/r33d-page/r33d-page.js';
+            import './../components/r33d-object-editor/r33d-object-editor.js';
+            import './../components/r33d-object-editor-column/r33d-object-editor-column.js';
+            import './../components/r33d-page/r33d-page.js';
         </script>
     </head>
     <body>
         <r33d-page>
-            <r33d-object-editor
-                data-cancel-url="books.html"
-                data-mode="edit"
-                data-object-store-name="books"
-            >
-                <r33d-object-editor-column
-                    data-label='Name'
-                    data-prop="name"
-                    data-type="text"
-                ></r33d-object-editor-column>
+            <r33d-object-editor data-mode="create" data-object-store-name="books" data-cancel-url="books.html">
+                <r33d-object-editor-column data-prop="name" data-type="text" data-label='Name'></r33d-object-editor-column>
                 <r33d-object-editor-column
                     data-prop="completedDate"
                     data-type="date"

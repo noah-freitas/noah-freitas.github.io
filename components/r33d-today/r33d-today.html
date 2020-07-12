@@ -1,4 +1,5 @@
 <template>
+    <h1>Reading Status</h1>
     <div id="container" data-active="not-done">
         <p id="done">Good job! You finished today's reading.</p>
         <p id="todays-reading">
@@ -8,6 +9,47 @@
             <button id="complete">I did it!</button>
         </p>
         <p id="no-reading">You don't have a reading scheduled today.</p>
+    </div>
+    <h1>Skimming Status</h1>
+    <div id="skimming-container">
+        <div id="skimming-done">
+            <p>Good job! You finished today's skimming.</p>
+            <p>
+                <span id="skimming-start-book-name"></span>
+                pages <span id="skimming-start-page"></span> - <span id="skimming-end-page"></span>
+                <span id="skimming-end-book-name-container">
+                    (<span id="skimming-end-book-name"></span>)
+                </span>
+            </p>
+        </div>
+        <div id="create-skimming">
+            <r33d-object-editor
+                data-mode="create"
+                data-object-store-name="skimmings"
+                data-dont-redirect
+            >
+                <r33d-object-editor-column
+                    data-prop="startBookId"
+                    data-type="object-picker"
+                    data-label="Start Book"
+                    data-object-store-name="books"
+                    data-label-prop="name"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="startPage"
+                    data-type="text"
+                    data-label="Start Page"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="endBookId"
+                    data-type="object-picker"
+                    data-label="End Book"
+                    data-object-store-name="books"
+                    data-label-prop="name"></r33d-object-editor-column>
+                <r33d-object-editor-column
+                    data-prop="endPage"
+                    data-type="text"
+                    data-label="End Page"></r33d-object-editor-column>
+            </r33d-object-editor>
+        </div>
     </div>
     <r33d-database></r33d-database>
     <style>
@@ -30,6 +72,15 @@
 
         #complete {
             width : 100%;
+        }
+
+        #skimming-container > * {
+            display : none;
+        }
+
+        #skimming-container[data-has-skimming="true"] #skimming-done,
+        #skimming-container[data-has-skimming="false"] #create-skimming {
+            display : block;
         }
     </style>
 </template>
