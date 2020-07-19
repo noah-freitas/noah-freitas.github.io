@@ -1,0 +1,41 @@
+<template>
+    <div id="book">
+        <div id="overlay">
+            <p id="title"></p>
+            <p id="author"></p>
+        </div>
+        <img id="cover">
+    </div>
+    <r33d-database></r33d-database>
+    <style>
+        #book {
+            display         : flex;
+            flex-direction  : column;
+            justify-content : center;
+        }
+
+        #cover {
+            height     : auto;
+            max-height : 300px;
+            max-width  : 204px;
+            width      : auto;
+        }
+
+        #overlay {
+            display : none;
+            cursor  : pointer;
+        }
+
+        :host(:hover) #overlay {
+            background : rgba(0, 0, 0, 0.7);
+            box-sizing : border-box;
+            color      : #fff;
+            display    : block;
+            height     : 300px;
+            padding    : 10px;
+            position   : absolute;
+            width      : 204px;
+            z-index    : 10;
+        }
+    </style>
+</template>

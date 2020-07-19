@@ -11,7 +11,7 @@ class R33dObjectEditorColumnElement extends R33dUiElement {
     async connectedCallback() {
         if (!await super.connectedCallback()) return;
 
-        let label = this.$('.label-text');
+        const label = this.$('.label-text');
         label.innerText = this.dataset.label || this.dataset.prop;
 
         if (this[editorEl]) return;
@@ -21,6 +21,21 @@ class R33dObjectEditorColumnElement extends R33dUiElement {
             case 'date':
                 this[editorEl] = document.createElement('input');
                 this[editorEl].type = 'date';
+                break;
+            case 'image':
+                this[editorEl]        = document.createElement('input');
+                this[editorEl].type   = 'file';
+                this[editorEl].accept = 'image/*';
+                this[editorEl].addEventListener('change', e => {
+                    const file = e.target.files[0];
+
+                    this.$('#preview-image').dataset.hasImage = String(Boolean(file));
+                    if (!file) return;
+
+                    const reader  = new FileReader();
+                    reader.onload = _ => this.$('#preview-image').src = reader.result;
+                    reader.readAsDataURL(file);
+                });
                 break;
             case 'number':
                 this[editorEl] = document.createElement('input');
@@ -58,9 +73,13 @@ class R33dObjectEditorColumnElement extends R33dUiElement {
     }
 
     get value() {
-        let editorEl = this.$('.label-text + *'), val;
+        const editorEl = this.$('.label-text + *');
+        let val;
 
         switch (this.dataset.type) {
+            case 'image':
+                val = editorEl.files[0];
+                break;
             case 'number':
                 val = Number(editorEl.value);
                 break;
@@ -86,6 +105,16 @@ class R33dObjectEditorColumnElement extends R33dUiElement {
                 let editorEl = this.$('.label-text + *');
 
                 switch (this.dataset.type) {
+                    case 'image':
+                        if (!val[this.dataset.prop]) return;
+                        const reader  = new FileReader();
+                        reader.onload = _ => {
+                            const el = this.$('#preview-image');
+                            el.src   = reader.result;
+                            el.dataset.hasImage = 'true';
+                        };
+                        reader.readAsDataURL(val[this.dataset.prop]);
+                        return;
                     case 'object-picker':
                         if (!this[hasOpts]) return;
                         return editorEl.value = val[this.dataset.prop];

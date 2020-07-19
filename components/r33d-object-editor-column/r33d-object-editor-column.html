@@ -1,9 +1,18 @@
 <template>
-    <label>
-        <span class="label-text"></span>
-    </label>
+    <div id="container">
+        <label>
+            <span class="label-text"></span>
+        </label>
+        <img id="preview-image">
+    </div>
     <r33d-database></r33d-database>
     <style>
+        #container {
+            align-items    : flex-start;
+            display        : flex;
+            flex-direction : column;
+        }
+
         label {
             display        : flex;
             flex-direction : row;
@@ -21,6 +30,18 @@
 
         textarea {
             min-height : 150px;
+        }
+
+        #preview-image {
+            display : none;
+        }
+
+        #preview-image[data-has-image="true"] {
+            display     : block;
+            height      : 299px;
+            margin-left : 120px;
+            max-width   : 100%;
+            width       : 200px;
         }
     </style>
 </template>

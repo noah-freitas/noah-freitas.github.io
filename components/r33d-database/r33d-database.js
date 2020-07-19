@@ -104,8 +104,10 @@ class R33dDatabaseElement extends R33dElement {
         }
     }
 
-    // get :: String, Number -> Promise<Object, Error>
+    // get :: String, Number | [Number] -> Promise<Object, Error>
     async get(storeName, key) {
+        if (Array.isArray(key)) return await Promise.all(key.map(k => this.get(storeName, k)));
+
         return await this.fromObjectStore(storeName, store => store.get(key));
     }
 

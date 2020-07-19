@@ -1,0 +1,16 @@
+<template>
+    <div id="books"></div>
+    <r33d-database></r33d-database>
+    <style>
+        #books {
+            display               : grid;
+            grid-template-columns : repeat(auto-fit, minmax(auto, 200px));
+            max-width             : 100vw;
+        }
+
+        r33d-bookshelf-book {
+            height : 300px;
+            width  : 200px;
+        }
+    </style>
+</template>

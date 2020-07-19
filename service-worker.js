@@ -1,7 +1,11 @@
-const cacheName = '0.0.55',
+const cacheName = '0.0.78',
       showLog   = false;
 
 const assetUrls = [
+    '/components/r33d-bookshelf/r33d-bookshelf.html',
+    '/components/r33d-bookshelf/r33d-bookshelf.js',
+    '/components/r33d-bookshelf-book/r33d-bookshelf-book.html',
+    '/components/r33d-bookshelf-book/r33d-bookshelf-book.js',
     '/components/r33d-daily-status/r33d-daily-status.html',
     '/components/r33d-daily-status/r33d-daily-status.js',
     '/components/r33d-database/r33d-database.js',
@@ -34,6 +38,7 @@ const assetUrls = [
     '/pages/authors.html',
     '/pages/book.html',
     '/pages/books.html',
+    '/pages/bookshelf.html',
     '/pages/import-authors.html',
     '/pages/import-books.html',
     '/pages/import-publishers.html',

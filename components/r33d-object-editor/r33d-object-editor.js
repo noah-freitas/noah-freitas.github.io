@@ -39,6 +39,7 @@ class R33dObjectEditorElement extends R33dUiElement {
                 throw new Error('data-mode not set');
             }
 
+            if (!eventCanceled && this.dataset.savedUrl) location.href = this.dataset.savedUrl;
             if (!eventCanceled && !this.hasAttribute('data-dont-redirect')) history.back();
         });
 
