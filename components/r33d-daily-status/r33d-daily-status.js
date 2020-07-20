@@ -1,3 +1,4 @@
+import '../r33d-book-progress/r33d-book-progress.js';
 import '../r33d-database/r33d-database.js';
 import DateHelpers   from '../../lib/date.js';
 import R33dUiElement from '../r33d-ui-element/r33d-ui-element.js';
@@ -27,20 +28,12 @@ class R33dDailyStatusElement extends R33dUiElement {
     }
 
     async setCurrentBooksProgress(db) {
-        let todaysReading = (await db.fromIndex('readings', 'scheduledDate', DateHelpers.toDatePicker(new Date())))[0];
+        const todaysReading = (await db.fromIndex('readings', 'scheduledDate', DateHelpers.toDatePicker(new Date())))[0];
         if (todaysReading) {
-            let book              = await db.get('books', Number(todaysReading.bookId)),
-                readingsForBook   = await db.fromIndex('readings', 'bookId', IDBKeyRange.only(book.id)),
-                countPages        = (n, reading) => n + Number(reading.totalPages),
-                totalPagesForBook = readingsForBook.reduce(countPages, 0),
-                pagesRead         = readingsForBook.filter(r => r.completedDate).reduce(countPages, 0),
-                progressEl        = this.$('progress');
+            const book = await db.get('books', Number(todaysReading.bookId));
 
-            progressEl.value = pagesRead;
-            progressEl.max   = totalPagesForBook;
-
-            this.$('#current-book-name').textContent = book.name;
-            this.$('#current-book-completion-percent').textContent = `${Math.round(pagesRead / totalPagesForBook * 100)}%`;
+            this.$('r33d-book-progress').dataset.bookId = book.id;
+            this.$('#current-book-name').textContent    = book.name;
         } else {
             this.$('#current-book-container').hidden = true;
         }

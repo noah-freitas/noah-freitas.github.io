@@ -1,4 +1,4 @@
-const cacheName = '0.0.78',
+const cacheName = '0.0.88',
       showLog   = false;
 
 const assetUrls = [
@@ -51,6 +51,7 @@ const assetUrls = [
     '/pages/skimming.html',
     '/pages/skimmings.html',
     '/styles/main.css',
+    '/favicon.ico',
     '/index.html',
     '/manifest.json',
 

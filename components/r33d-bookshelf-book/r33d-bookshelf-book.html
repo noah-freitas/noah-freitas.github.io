@@ -1,8 +1,16 @@
 <template>
     <div id="book">
+        <div id="status">
+            <r33d-book-progress></r33d-book-progress>
+        </div>
         <div id="overlay">
             <p id="title"></p>
             <p id="author"></p>
+            <p id="reading-dates">
+                <span id="from-date"></span>
+                -
+                <span id="to-date"></span>
+            </p>
         </div>
         <img id="cover">
     </div>
@@ -26,7 +34,8 @@
             cursor  : pointer;
         }
 
-        :host(:hover) #overlay {
+        :host(:hover) #overlay,
+        #book.active #status {
             background : rgba(0, 0, 0, 0.7);
             box-sizing : border-box;
             color      : #fff;
@@ -36,6 +45,18 @@
             position   : absolute;
             width      : 204px;
             z-index    : 10;
+        }
+
+        #status {
+            display : none;
+        }
+
+        #book.active #status {
+            align-items     : center;
+            background      : rgba(128, 128, 128, 0.5);
+            color           : #000;
+            display         : flex;
+            justify-content : center;
         }
     </style>
 </template>
